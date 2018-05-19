@@ -1,0 +1,12 @@
+---
+- name: Install Wordpress Docker Containers
+  hosts: [webserver2 database1 database2 docker]
+  become: yes
+  become_method: sudo
+  gather_facts: true
+  tags: [web]
+
+  tasks:
+   - name: Install and Start Wordpress LampStack Containers on hosts
+     command: /usr/local/bin/docker run -d -p 80:80 tutum/wordpress
+     register: mydockerwp
